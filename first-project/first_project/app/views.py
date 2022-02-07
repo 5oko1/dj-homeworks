@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from django.http import HttpResponse
@@ -21,14 +22,12 @@ def home_view(request):
 
 
 def time_view(request):
-    # обратите внимание – здесь HTML шаблона нет,
-    # возвращается просто текст
-    current_time = None
-    msg = f'Текущее время: {current_time}'
+    now = datetime.datetime.now()
+    msg = f'Текущее время: {now.strftime("%H:%M:%S")} <br><a href={reverse("home")}>На главную</a>'
     return HttpResponse(msg)
 
 
 def workdir_view(request):
     files = '<br>'.join(os.listdir())
-    msg = f'Список файлов в текущей директории: <br>{files}'
+    msg = f'Список файлов в текущей директории: <br>{files} <br><a href={reverse("home")}>На главную</a>'
     return HttpResponse(msg)
