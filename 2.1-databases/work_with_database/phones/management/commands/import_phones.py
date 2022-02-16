@@ -13,5 +13,5 @@ class Command(BaseCommand):
             phones = list(csv.DictReader(file, delimiter=';'))
 
         for phone in phones:
-            # TODO: Добавьте сохранение модели
-            pass
+            Phone(phone.name, phone.price, phone.image, phone.release_date, phone.lte_exists)
+        print('Импорт прошёл успешно')
